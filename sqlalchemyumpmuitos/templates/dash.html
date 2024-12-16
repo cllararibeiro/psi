@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários</title>
+</head>
+<body>
+    <h2>Usuários</h2>
+    <p>Bem-vindo à área de usuários!</p>
+
+    <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Bem-vindo, {{ usuario.nome }}!</h1>
+
+    <h2>Seus Posts:</h2>
+    <ul>
+        {% for post in usuario.posts %}
+            <li>
+                <strong>{{ post.titulo }}</strong>
+                <p>{{ post.conteudo }}</p>
+            </li>
+        {% else %}
+            <li>Você ainda não tem posts.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Criar post</h2>
+    <form action="{{ url_for('dash') }}" method="POST">
+        <input type="text" name="titulo" placeholder="Titulo" required><br>
+        <input type="text" name="conteudo" placeholder="Conteúdo" required></textarea><br><br>
+        <button type="submit">criar post</button>
+    </form>
+
+    <form action="{{ url_for('logout') }}" method="POST">
+        <button type="submit">Sair</button>
+    </form>
+</body>
+</html>
