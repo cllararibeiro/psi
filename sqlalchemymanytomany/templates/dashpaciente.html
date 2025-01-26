@@ -1,0 +1,29 @@
+<!-- templates/paciente.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ paciente.nome }} - Consultas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>{{ paciente.nome }} - Consultas</h1>
+
+    <h2>Consultas Realizadas</h2>
+    <ul>
+        {% for consulta in consultas_realizadas %}
+            <li>{{ consulta.data }} - Médico: {{ consulta.medico.nome }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Consultas Agendadas</h2>
+    <ul>
+        {% for consulta in consultas_agendadas %}
+            <li>{{ consulta.data }} - Médico: {{ consulta.medico.nome }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Sair</a>
+</body>
+</html>

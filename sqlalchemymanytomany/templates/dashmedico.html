@@ -1,0 +1,55 @@
+<!-- templates/medico.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ medico.nome }} - Consultas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>{{ medico.nome }} - Consultas</h1>
+
+    <h2>Consultas Realizadas</h2>
+    <ul>
+        {% for consulta in consultas_realizadas %}
+            <li>{{ consulta.data }} - Paciente: {{ consulta.paciente.nome }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Consultas Agendadas</h2>
+    <ul>
+        {% for consulta in consultas_agendadas %}
+            <li>{{ consulta.data }} - Paciente: {{ consulta.paciente.nome }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Cadastrar Nova Consulta</h2>
+    <form action="{{ url_for('medicodash') }}" method="POST">
+        <label for="paciente_id">Paciente:</label>
+        <select name="paciente_id" id="paciente_id">
+            {% for paciente in pacientes %}
+                <option value="{{ paciente.id }}">{{ paciente.nome }}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <label for="data">Data da Consulta:</label>
+        <input type="datetime-local" name="data" required>
+
+        <br><br>
+
+        <!-- Se quiser adicionar a opção de consulta realizada, pode ser feito com um checkbox -->
+        <label for="realizada">Consulta realizada?</label>
+        <input type="checkbox" name="realizada" id="realizada">
+
+        <br><br>
+
+        <!-- Alteração do botão para 'Cadastrar' -->
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <a href="/">Sair</a>
+</body>
+</html>

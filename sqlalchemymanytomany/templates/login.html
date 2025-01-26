@@ -1,0 +1,37 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Login</h1>
+    <form action= "{{url_for('login') }}" method="POST">
+        <label for="role">Login como:</label>
+        <select name="role" id="role">
+            <option value="medico">Médico</option>
+            <option value="paciente">Paciente</option>
+        </select>
+
+        <br><br>
+
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email" required>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha" id="senha" required>
+
+        <br><br>
+
+        <button type="submit">Entrar</button>
+    </form>
+
+    <br>
+
+    <p>Não tem uma conta?</p>
+    <a href="{{ url_for('cadmedico') }}" class="button">Cadastrar Médico</a> | 
+    <a href="{{ url_for('cadmedico') }}" class="button">Cadastrar Paciente</a>
+</body>
+</html>
